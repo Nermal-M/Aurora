@@ -1,0 +1,314 @@
+/* =====================================================================
+   AURORA INTRO — Technical Aerospace & Mars Rover Aesthetics
+   ===================================================================== */
+:root {
+  --au-space: #07080D;   /* Deep space background       */
+  --au-space-card: #0E1018;
+  --au-mars: #E2552B;    /* Mars rust accent            */
+  --au-mars-glow: rgba(226, 85, 43, 0.4);
+  --au-solar: #FFC93C;   /* Solar telemetry gold        */
+  --au-bone: #F3EDE4;    /* Technical bone typography   */
+  --au-dust: #9A948C;    /* HUD muted telemetry         */
+  --au-teal: #2EE6C5;    /* Autonomous sensor teal      */
+}
+
+/* While the intro is active the page can't scroll */
+html.au-lock, html.au-lock body {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
+/* =====================================================================
+   INTRO OVERLAY
+   ===================================================================== */
+#au-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--au-space);
+  background-image: 
+    radial-gradient(circle at center, rgba(226, 85, 43, 0.16) 0%, transparent 65%),
+    radial-gradient(rgba(243, 237, 228, 0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 28px 28px;
+  overflow: hidden;
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  color: var(--au-bone);
+  clip-path: inset(0 0 0 0);
+  -webkit-user-select: none;
+  user-select: none;
+}
+#au-intro * {
+  box-sizing: border-box;
+}
+
+/* Centre Anchor */
+.au-c {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Technical Rings */
+.au-ring {
+  border-radius: 50%;
+  border: 1px solid;
+  pointer-events: none;
+}
+.au-r1 { width: 14vmin; height: 14vmin; border-color: rgba(243, 237, 228, 0.35); }
+.au-r2 { width: 56vmin; height: 56vmin; border-color: rgba(243, 237, 228, 0.18); border-style: dashed; }
+.au-r3 { width: 90vmin; height: 90vmin; border-width: 2px; border-color: rgba(243, 237, 228, 0.08); }
+.au-r4 { width: 44vmin; height: 44vmin; border-color: rgba(226, 85, 43, 0.5); }
+
+/* Centre Official Aurora Emblem */
+.au-center-logo {
+  width: 25vmin;
+  height: 25vmin;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6vmin rgba(226, 85, 43, 0.55), 0 0 12vmin rgba(226, 85, 43, 0.25);
+  background: rgba(7, 8, 13, 0.85);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(226, 85, 43, 0.4);
+  z-index: 5;
+}
+.au-center-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* Circular Orbiting Typography */
+.au-ringtext {
+  width: 48vmin;
+  height: 48vmin;
+  z-index: 4;
+}
+.au-ringtext svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+.au-ringtext text {
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  fill: rgba(243, 237, 228, 0.88);
+}
+
+/* Supernova Core & Shockwave Discs (Deep Space & Mars Glow) */
+.au-hot {
+  width: 1.2vmin;
+  height: 1.2vmin;
+  border-radius: 50%;
+  background: #FFF;
+  box-shadow: 0 0 3vmin 1vmin #FFF, 0 0 6vmin 2vmin var(--au-solar);
+  z-index: 10;
+}
+.au-disc {
+  width: 320vmax;
+  height: 320vmax;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+.au-bone {
+  background: radial-gradient(circle, rgba(243, 237, 228, 0.2) 0%, rgba(14, 16, 24, 0.95) 60%, #07080D 100%);
+  box-shadow: 0 0 8vmin rgba(46, 230, 197, 0.2);
+  z-index: 8;
+}
+.au-sun {
+  width: 38vmin;
+  height: 38vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(226, 85, 43, 0.7) 0%, rgba(226, 85, 43, 0.25) 45%, transparent 75%);
+  filter: blur(1.5vmin);
+  z-index: 9;
+}
+.au-rust {
+  background: radial-gradient(circle at center, #10131F 0%, #07080D 70%);
+  border: 1px solid rgba(226, 85, 43, 0.35);
+  box-shadow: 0 0 10vmin rgba(226, 85, 43, 0.15);
+  z-index: 11;
+}
+
+/* =====================================================================
+   ROVER TECHNICAL WORDMARK LAYER (Full Viewport Fit Guaranteed)
+   ===================================================================== */
+.au-word {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--au-bone);
+  pointer-events: none;
+  z-index: 15;
+  padding: 0 32px;
+}
+
+.au-line {
+  position: absolute;
+  left: 8vw;
+  right: 8vw;
+  top: clamp(48px, 8vh, 80px);
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--au-mars), var(--au-solar), transparent);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+/* Sized & Proportioned so the entire word AURORA is 100% visible */
+.au-wm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  margin: 0;
+  font-family: var(--font-space-grotesk), 'Space Grotesk', -apple-system, sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-size: clamp(2.6rem, 8.5vw, 6.5rem);
+  text-transform: uppercase;
+  max-width: 90vw;
+}
+
+.au-ch {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.05em 0.03em;
+}
+
+.au-ch i {
+  display: inline-block;
+  font-style: normal;
+  will-change: transform, filter;
+  transform: translateY(112%);
+  color: var(--au-bone);
+}
+
+/* Distinctive Mars Accent on Last Character */
+.au-ch.last-char i {
+  color: var(--au-mars);
+  text-shadow: 0 0 25px rgba(226, 85, 43, 0.5);
+}
+
+/* Mars Rover Subtitle HUD Tag */
+.au-tag-wrap {
+  overflow: hidden;
+  margin-top: clamp(14px, 2.5vh, 26px);
+  padding: 0.15em 0.5em;
+}
+
+.au-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(120%);
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: clamp(10px, 1.4vw, 13px);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--au-bone);
+  background: rgba(14, 16, 24, 0.9);
+  border: 1px solid rgba(226, 85, 43, 0.6);
+  padding: 6px 18px;
+  box-shadow: 0 0 20px rgba(226, 85, 43, 0.25);
+}
+
+.au-tag .badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--au-mars);
+  box-shadow: 0 0 8px var(--au-mars);
+}
+
+/* =====================================================================
+   HUD CHROME (Aerospace Corner Brackets & Telemetry Labels)
+   ===================================================================== */
+.au-chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 20;
+  color: var(--au-bone);
+}
+
+.au-br {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid currentColor;
+  opacity: 0.6;
+}
+.au-br.tl { left: 24px; top: 24px; border-right: 0; border-bottom: 0; }
+.au-br.tr { right: 24px; top: 24px; border-left: 0; border-bottom: 0; }
+.au-br.bl { left: 24px; bottom: 24px; border-right: 0; border-top: 0; }
+.au-br.br { right: 24px; bottom: 24px; border-left: 0; border-top: 0; }
+
+.au-lab {
+  position: absolute;
+  top: 32px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.85;
+}
+.au-lab.l { left: 48px; }
+.au-lab.r { right: 48px; }
+.au-logo {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Skip Button */
+.au-skip {
+  position: absolute;
+  right: 48px;
+  bottom: 32px;
+  z-index: 25;
+  pointer-events: auto;
+  font: 600 11px/1 var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--au-dust);
+  background: rgba(14, 16, 24, 0.7);
+  border: 1px solid rgba(243, 237, 228, 0.2);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.au-skip:hover, .au-skip:focus-visible {
+  color: var(--au-bone);
+  border-color: var(--au-mars);
+  background: rgba(226, 85, 43, 0.15);
+  box-shadow: 0 0 12px rgba(226, 85, 43, 0.4);
+  outline: none;
+}
+
+@media (max-width: 560px) {
+  .au-lab.l { left: 32px; }
+  .au-lab.r { right: 32px; }
+  .au-skip { right: 32px; }
+  .au-br.tl { left: 16px; top: 16px; }
+  .au-br.tr { right: 16px; top: 16px; }
+  .au-br.bl { left: 16px; bottom: 16px; }
+  .au-br.br { right: 16px; bottom: 16px; }
+}

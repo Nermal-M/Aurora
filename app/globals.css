@@ -1,0 +1,218 @@
+@import "tailwindcss";
+@import "../styles/intro.css";
+
+:root {
+  --space-900: #07080D;
+  --space-800: #0E1018;
+  --space-700: #171A26;
+  --mars: #E2552B;
+  --mars-deep: #7A1F12;
+  --solar: #FFC93C;
+  --aurora-teal: #2EE6C5;
+  --aurora-violet: #8B6CFF;
+  --bone: #F3EDE4;
+  --dust: #9A948C;
+
+  --theme-bg: var(--space-900);
+  --theme-fg: var(--bone);
+  --theme-border: var(--space-700);
+}
+
+@theme inline {
+  --color-space-900: var(--space-900);
+  --color-space-800: var(--space-800);
+  --color-space-700: var(--space-700);
+  --color-mars: var(--mars);
+  --color-mars-deep: var(--mars-deep);
+  --color-solar: var(--solar);
+  --color-aurora-teal: var(--aurora-teal);
+  --color-aurora-violet: var(--aurora-violet);
+  --color-bone: var(--bone);
+  --color-dust: var(--dust);
+  --font-space: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* Base Body Styles */
+html {
+  background-color: var(--space-900);
+  color: var(--bone);
+  scroll-behavior: auto !important; /* Lenis takes control */
+}
+
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-fg);
+  font-family: var(--font-jetbrains-mono), monospace;
+  overflow-x: hidden;
+  /* No CSS transition — theme changes are instant to avoid full-page repaint lag.
+     Sections carry their own backgrounds, so the body swap is purely a semantic reset. */
+  min-height: 100vh;
+}
+
+/* Section Mood Themes */
+body[data-theme="default"],
+body[data-theme="hero"],
+body[data-theme="about"] {
+  --theme-bg: var(--space-900);
+  --theme-fg: var(--bone);
+  --theme-border: var(--space-700);
+}
+
+body[data-theme="rover"] {
+  --theme-bg: #000000;
+  --theme-fg: var(--bone);
+  --theme-border: var(--aurora-teal);
+}
+
+body[data-theme="subsystems"] {
+  --theme-bg: #05060A;
+  --theme-fg: var(--bone);
+  --theme-border: var(--space-700);
+}
+
+body[data-theme="challenges"] {
+  --theme-bg: var(--mars);
+  --theme-fg: #07080D;
+  --theme-border: #07080D;
+}
+
+body[data-theme="updates"] {
+  --theme-bg: #07080D;
+  --theme-fg: var(--bone);
+  --theme-border: var(--aurora-violet);
+}
+
+body[data-theme="team"] {
+  --theme-bg: #07080D;
+  --theme-fg: var(--bone);
+  --theme-border: var(--space-700);
+}
+
+body[data-theme="sponsors"],
+body[data-theme="results"] {
+  --theme-bg: var(--space-800);
+  --theme-fg: var(--bone);
+  --theme-border: var(--space-700);
+}
+
+body[data-theme="footer"] {
+  --theme-bg: #1A0A06;
+  --theme-fg: var(--bone);
+  --theme-border: var(--mars-deep);
+}
+
+/* Dotted and Technical Grids */
+.bg-dotted-grid {
+  background-image: radial-gradient(var(--space-700) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-black-grid {
+  background-size: 32px 32px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
+}
+
+/* Neo-Brutalist Cards and Buttons */
+.hard-shadow {
+  box-shadow: 4px 4px 0px var(--bone);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hard-shadow:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--bone);
+}
+
+.hard-shadow-mars {
+  box-shadow: 4px 4px 0px var(--mars);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hard-shadow-mars:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--mars);
+}
+
+.hard-shadow-teal {
+  box-shadow: 4px 4px 0px var(--aurora-teal);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hard-shadow-teal:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--aurora-teal);
+}
+
+.hard-shadow-black {
+  box-shadow: 4px 4px 0px #07080D;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hard-shadow-black:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px #07080D;
+}
+
+/* Signature Outline-vs-Solid Typography */
+.text-stroke-bone {
+  -webkit-text-stroke: 1.5px var(--bone);
+  color: transparent !important;
+}
+
+.text-stroke-black {
+  -webkit-text-stroke: 2px #07080D;
+  color: transparent !important;
+}
+
+.text-stroke-mars {
+  -webkit-text-stroke: 1.5px var(--mars);
+  color: transparent !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--space-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--space-700);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mars);
+}
+
+/* Lenis Recommended Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
